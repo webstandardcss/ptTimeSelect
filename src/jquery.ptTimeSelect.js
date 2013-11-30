@@ -8,6 +8,7 @@
  *  
  * @version 0.8
  * @author  Paul Tavares, www.purtuga.com
+ * @author  Trey Brister, www.web-standard-design.com
  * @see     http://pttimeselect.sourceforge.net
  * 
  * @requires jQuery {@link http://www.jquery.com}
@@ -53,9 +54,9 @@
  * 
  * LAST UPDATED:
  * 
- *         - $Date: 2012/08/05 19:40:21 $
- *         - $Author: paulinho4u $
- *         - $Revision: 1.8 $
+ *         - $Date: 2013/11/30 19:40:21 $
+ *         - $Author: Trey Brister $
+ *         - $Revision: 1.9 $
  * 
  */
 
