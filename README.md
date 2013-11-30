@@ -13,6 +13,9 @@ jQuery.ptTimeSelect is called agaist input fields to attach a Time Select widget
 
 EXAMPLE
 -----------
+
+###http://webstandardcss.github.io/ptTimeSelect
+
 ```
 <input name="time" value="" />
 <script type="text/javascript">
