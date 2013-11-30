@@ -1,0 +1,29 @@
+
+#ptTimeSelectCntr {
+	border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-webkit-box-shadow:  3px 3px 3px 3px rgba(0, 0, 0, 0.5);
+	box-shadow:  3px 3px 3px 3px rgba(0, 0, 0, 0.5);
+}
+
+#ptTimeSelectCntr, #ptTimeSelectCntr a {
+	background-color: white;
+	font-size: 21px !important;
+	font-weight: 200;
+	color: black;
+}
+
+#ptTimeSelectCloseCntr,
+#ptTimeSelectCloseCntr a,
+#ptTimeSelectSetButton a,
+#ptTimeSelectSetButton,
+.ptTimeSelectTimeLabelsCntr {
+	color: grey;
+	font-family: arial, sans-serif;
+	text-decoration: none;
+}
+
+#ptTimeSelectSetButton a,
+#ptTimeSelectCloseCntr a {
+	color: red;
+}
