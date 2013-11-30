@@ -76,3 +76,15 @@ Function will return a jQuery object with the input selection, thus maintaining 
     });
 </script>
 ```
+
+DOCUMENTATION
+-----------
+    Documentation can be found in the <doc> directory of the archive file
+	downloaded, including installation and usage.
+	
+		
+EXAMPLES
+-----------
+    Examples can be found in the <example> directory of the archive file
+    downloaded. They are in html format. An internext connection is need
+    in order to use jQuery and jQuery UI Style sheet from Google's CDN.
