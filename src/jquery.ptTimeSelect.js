@@ -473,6 +473,13 @@
                     jQuery.ptTimeSelect.openCntr(this);
                 });
             }
+			// Make the mobile virtual keyboard go away.
+			$(this).on('focus click tap vclick', function (event) {
+                event.stopImmediatePropagation();
+                event.preventDefault();
+				
+                $(this).blur();
+            });
             return this;
         });
     };// End of jQuery.fn.ptTimeSelect
