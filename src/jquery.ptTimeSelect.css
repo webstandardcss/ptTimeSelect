@@ -4,7 +4,7 @@
  * 
  *  LAST UPDATED:
  * 
- * 		- $Date: 2009/04/12 20:23:02 $
+ * 		- $Date: 2013/11/30 20:23:02 $
  * 		- $Author: paulinho4u $
  * 		- $Revision: 1.1 $
  */
@@ -80,4 +80,41 @@
 	width: 30%;
 	text-align: center;
 	float: right;
+}
+
+// Css added by Trey Brister
+
+.ptTimeSelectHrAmPmCntr {
+	text-align: center;
+}
+
+.ptTimeSelectHrAmPmCntr .ptTimeSelectHr {
+	display: inline-block;
+	margin: 6px !important;
+}
+
+#ptTimeSelectCntr #ptTimeSelectUserTime {
+	width: 86%;
+}
+
+.ptTimeColumn {
+	width: 50%;
+	float: left;
+}
+
+#ptTimeSelectCntr #ptTimeSelectUserTime {
+	width: 78%;
+}
+
+/* Portrait */
+@media screen and (max-width: 479px) {
+	.ptTimeColumn {
+		width: 90%;
+		float: none;
+		margin: 12px auto;
+	}
+	#ptTimeSelectCntr {
+		max-width: 80%;
+		margin: 0 auto;
+	}
 }
