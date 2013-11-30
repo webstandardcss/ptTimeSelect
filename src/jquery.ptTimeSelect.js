@@ -8,8 +8,9 @@
  *  
  * @version 0.8
  * @author  Paul Tavares, www.purtuga.com
- * @author  Trey Brister, www.web-standard-design.com
  * @see     http://pttimeselect.sourceforge.net
+ * @author  Trey Brister, www.web-standard-design.com
+ * @see     http://facebook.com/designtips/
  * 
  * @requires jQuery {@link http://www.jquery.com}
  * 
@@ -54,8 +55,8 @@
  * 
  * LAST UPDATED:
  * 
- *         - $Date: 2013/11/30 19:40:21 $
- *         - $Author: Trey Brister $
+ *         - $Date: 2013/11/30 20:40:21 $
+ *         - $Author: Trey Brister  $
  *         - $Revision: 1.9 $
  * 
  */
@@ -300,6 +301,7 @@
      * @return {undefined}
      * 
      */
+	
     jQuery.ptTimeSelect.openCntr = function (ele) {
         jQuery.ptTimeSelect.closeCntr();
         jQuery(".isPtTimeSelectActive").removeClass("isPtTimeSelectActive");
@@ -481,6 +483,12 @@
 				
                 $(this).blur();
             });
+			$(document).keypress(function(pressedKey) {
+				enterKey = 13;
+				if(pressedKey.which == enterKey) {
+					jQuery.ptTimeSelect.setTime()
+				}
+			});
             return this;
         });
     };// End of jQuery.fn.ptTimeSelect
