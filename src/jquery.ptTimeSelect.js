@@ -1,37 +1,37 @@
 /**
  * FILE: jQuery.ptTileSelect.js
- *  
+ *
  * @fileOverview
  * jQuery plugin for displaying a popup that allows a user
  * to define a time and set that time back to a form's input
  * field.
- *  
+ *
  * @version 0.8
  * @author  Paul Tavares, www.purtuga.com
  * @see     http://pttimeselect.sourceforge.net
  * @author  Trey Brister, www.web-standard-design.com
  * @see     http://facebook.com/designtips/
- * 
+ *
  * @requires jQuery {@link http://www.jquery.com}
- * 
- * 
+ *
+ *
  * LICENSE:
- * 
+ *
  *  Copyright (c) 2007 Paul T. (purtuga.com)
  *  Dual licensed under the:
  *
  *  -   MIT
  *      <http://www.opensource.org/licenses/mit-license.php>
- * 
+ *
  *  -   GPL
  *      <http://www.opensource.org/licenses/gpl-license.php>
- *  
+ *
  *  User can pick whichever one applies best for their project
  *  and doesn not have to contact me.
- * 
- * 
+ *
+ *
  * INSTALLATION:
- * 
+ *
  * There are two files (.css and .js) delivered with this plugin and
  * that must be included in your html page after the jquery.js library
  * and the jQuery UI style sheet (the jQuery UI javascript library is
@@ -39,30 +39,30 @@
  * Both of these are to be included inside of the 'head' element of
  * the document. Example below demonstrates this along side the jQuery
  * libraries.
- * 
+ *
  * |    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
  * |    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.22/themes/redmond/jquery-ui.css" />
  * |
  * |    <link rel="stylesheet" type="text/css" href="jquery.ptTimeSelect.css" />
  * |    <script type="text/javascript" src="jquery.ptTimeSelect.js"></script>
  * |
- * 
+ *
  * USAGE:
- * 
+ *
  *     -    See <$(ele).ptTimeSelect()>
- * 
- * 
- * 
+ *
+ *
+ *
  * LAST UPDATED:
- * 
+ *
  *         - $Date: 2013/11/30 20:40:21 $
  *         - $Author: Trey Brister  $
  *         - $Revision: 1.9 $
- * 
+ *
  */
 
 (function($){
-    
+
     /**
      *  jQuery definition
      *
@@ -70,29 +70,29 @@
      *  @name   jQuery
      *  @class  jQuery Library
      */
-    
+
     /**
      * jQuery 'fn' definition to anchor all public plugin methods.
-     * 
+     *
      * @see         http://jquery.com/
      * @name        fn
      * @class       jQuery Library public method anchor
      * @memberOf    jQuery
      */
-    
+
     /**
      *  Namespace for all properties and methods
-     *  
+     *
      *  @namespace   ptTimeSelect
      *  @memberOf    jQuery
      */
     jQuery.ptTimeSelect         = {};
     jQuery.ptTimeSelect.version = "__BUILD_VERSION_NUMBER__";
-    
+
     /**
      * The default options for all calls to ptTimeSelect. Can be
      * overwriten with each individual call to {@link jQuery.fn.ptTimeSelect}
-     *  
+     *
      * @type {Object} options
      * @memberOf jQuery.ptTimeSelect
      * @see jQuery.fn.ptTimeSelect
@@ -109,11 +109,11 @@
         onBeforeShow:   undefined,
         onClose:        undefined
     };
-    
+
     /**
      * Internal method. Called when page is initialized to add the time
      * selection area to the DOM.
-     *  
+     *
      * @private
      * @memberOf jQuery.ptTimeSelect
      * @return {undefined}
@@ -215,37 +215,37 @@
                         +    '        <![endif]-->'
                         +    '    </div></div>'
                     );
-                    
+
                     var e = jQuery('#ptTimeSelectCntr');
-    
+
                     // Add the events to the functions
                     e.find('.ptTimeSelectMin')
                         .bind("click", function(){
                             jQuery.ptTimeSelect.setMin($(this).text());
                          });
-                    
+
                     e.find('.ptTimeSelectHr')
                         .bind("click", function(){
                             jQuery.ptTimeSelect.setHr($(this).text());
                          });
-                    
-                    $(document).mousedown(jQuery.ptTimeSelect._doCheckMouseClick);            
+
+                    $(document).mousedown(jQuery.ptTimeSelect._doCheckMouseClick);
                 }//end if
             }
         );
     }();// jQuery.ptTimeSelectInit()
-    
-    
+
+
     /**
      * Sets the hour selected by the user on the popup.
-     * 
-     * @private 
+     *
+     * @private
      * @param  {Integer}   h   -   Interger indicating the hour. This value
      *                      is the same as the text value displayed on the
      *                      popup under the hour. This value can also be the
      *                      words AM or PM.
      * @return {undefined}
-     * 
+     *
      */
     jQuery.ptTimeSelect.setHr = function(h) {
         if (    h.toLowerCase() == "am"
@@ -256,10 +256,10 @@
             jQuery('#ptTimeSelectUserSelHr').empty().append(h);
         }
     };// END setHr() function
-        
+
     /**
      * Sets the minutes selected by the user on the popup.
-     * 
+     *
      * @private
      * @param {Integer}    m   - interger indicating the minutes. This
      *          value is the same as the text value displayed on the popup
@@ -269,11 +269,11 @@
     jQuery.ptTimeSelect.setMin = function(m) {
         jQuery('#ptTimeSelectUserSelMin').empty().append(m);
     };// END setMin() function
-        
+
     /**
      * Takes the time defined by the user and sets it to the input
      * element that the popup is currently opened for.
-     * 
+     *
      * @private
      * @return {undefined}
      */
@@ -283,25 +283,28 @@
                     + jQuery('#ptTimeSelectUserSelMin').text()
                     + " "
                     + jQuery('#ptTimeSelectUserSelAmPm').text();
-        jQuery(".isPtTimeSelectActive").val(tSel);
+        var input = jQuery(".isPtTimeSelectActive");
+        var tSelOrig = input.val();
+        input.val(tSel);
+        if (tSel != tSelOrig){ input.trigger('change') }
         this.closeCntr();
-        
+
     };// END setTime() function
-        
+
     /**
      * Displays the time definition area on the page, right below
      * the input field.  Also sets the custom colors/css on the
      * displayed area to what ever the input element options were
      * set with.
-     * 
+     *
      * @private
      * @param {String} uId - Id of the element for whom the area will
-     *                  be displayed. This ID was created when the 
+     *                  be displayed. This ID was created when the
      *                  ptTimeSelect() method was called.
      * @return {undefined}
-     * 
+     *
      */
-	
+
     jQuery.ptTimeSelect.openCntr = function (ele) {
         jQuery.ptTimeSelect.closeCntr();
         jQuery(".isPtTimeSelectActive").removeClass("isPtTimeSelectActive");
@@ -342,9 +345,9 @@
             opt.onBeforeShow(i, cntr);
         }
         cntr.slideDown("fast");
-            
+
     };// END openCntr()
-        
+
     /**
      * Closes (hides it) the popup container.
      * @private
@@ -355,14 +358,14 @@
     jQuery.ptTimeSelect.closeCntr = function(i) {
         var e = $("#ptTimeSelectCntr");
         if (e.is(":visible") == true) {
-            
+
             // If IE, then check to make sure it is realy visible
             if (jQuery.support.tbody == false) {
                 if (!(e[0].offsetWidth > 0) && !(e[0].offsetHeight > 0) ) {
                     return;
                 }
             }
-            
+
             jQuery('#ptTimeSelectCntr')
                 .css("display", "none")
                 .removeClass()
@@ -380,11 +383,11 @@
         }
         return;
     };//end closeCntr()
-    
+
     /**
      * Closes the timePicker popup if user is not longer focused on the
      * input field or the timepicker
-     * 
+     *
      * @private
      * @param {jQueryEvent} ev -    Event passed in by jQuery
      * @return {undefined}
@@ -397,58 +400,58 @@
             && jQuery(ev.target).not("input.isPtTimeSelectActive").length ){
             jQuery.ptTimeSelect.closeCntr();
         }
-        
+
     };// jQuery.ptTimeSelect._doCheckMouseClick
-    
+
     /**
      * FUNCTION: $().ptTimeSelect()
      * Attaches a ptTimeSelect widget to each matched element. Matched
      * elements must be input fields that accept a values (input field).
-     * Each element, when focused upon, will display a time selection 
+     * Each element, when focused upon, will display a time selection
      * popoup where the user can define a time.
-     * 
+     *
      * @memberOf jQuery
-     * 
+     *
      * PARAMS:
-     * 
+     *
      * @param {Object}      [opt] - An object with the options for the time selection widget.
-     * 
+     *
      * @param {String}      [opt.containerClass=""] - A class to be associated with the popup widget.
-     * 
+     *
      * @param {String}      [opt.containerWidth=""] - Css width for the container.
-     * 
+     *
      * @param {String}      [opt.hoursLabel="Hours"] - Label for the Hours.
-     * 
+     *
      * @param {String}      [opt.minutesLabel="Minutes"] - Label for the Mintues container.
-     * 
+     *
      * @param {String}      [opt.setButtonLabel="Set"] - Label for the Set button.
-     * 
+     *
      * @param {String}      [opt.popupImage=""] - The html element (ex. img or text) to be appended next to each
      *      input field and that will display the time select widget upon
      *      click.
-     * 
+     *
      * @param {Integer}     [opt.zIndex=10] - Integer for the popup widget z-index.
-     * 
-     * @param {Function}    [opt.onBeforeShow=undefined] - Function to be called before the widget is made visible to the 
-     *      user. Function is passed 2 arguments: 1) the input field as a 
+     *
+     * @param {Function}    [opt.onBeforeShow=undefined] - Function to be called before the widget is made visible to the
+     *      user. Function is passed 2 arguments: 1) the input field as a
      *      jquery object and 2) the popup widget as a jquery object.
-     * 
+     *
      * @param {Function}    [opt.onClose=undefined] - Function to be called after closing the popup widget. Function
      *      is passed 1 argument: the input field as a jquery object.
-     * 
+     *
      * @param {Bollean}     [opt.onFocusDisplay=true] - True or False indicating if popup is auto displayed upon focus
      *      of the input field.
-     * 
-     * 
+     *
+     *
      * RETURN:
      * @return {jQuery} selection
-     * 
-     * 
-     * 
+     *
+     *
+     *
      * EXAMPLE:
      * @example
      *  $('#fooTime').ptTimeSelect();
-     * 
+     *
      */
     jQuery.fn.ptTimeSelect = function (opt) {
         return this.each(function(){
@@ -460,7 +463,7 @@
             var thisOpt = {};
             thisOpt = $.extend(thisOpt, jQuery.ptTimeSelect.options, opt);
             e.addClass('hasPtTimeSelect').data("ptTimeSelectOptions", thisOpt);
-            
+
             //Wrap the input field in a <div> element with
             // a unique id for later referencing.
             if (thisOpt.popupImage || !thisOpt.onFocusDisplay) {
@@ -480,7 +483,7 @@
 			$(this).on('focus click tap vclick', function (event) {
                 event.stopImmediatePropagation();
                 event.preventDefault();
-				
+
                 $(this).blur();
             });
 			$(document).keypress(function(pressedKey) {
@@ -492,5 +495,5 @@
             return this;
         });
     };// End of jQuery.fn.ptTimeSelect
-    
+
 })(jQuery);
